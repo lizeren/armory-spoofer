@@ -21,28 +21,6 @@ import (
 )
 
 
-
-type HIDDescriptor struct {
-	Length            uint8
-	DescriptorType    uint8
-	bcdHID            uint16
-	CountryCode       uint8
-	NumDescriptors    uint8
-	DescriptorType2   uint8
-	DescriptorLength  uint16
-}
-
-func (d *HIDDescriptor) Bytes() []byte {
-	buf := new(bytes.Buffer)
-	binary.Write(buf, binary.LittleEndian, d)
-	return buf.Bytes()
-}
-
-
-
-
-
-
 const maxPacketSize = 512
 
 // queue for IN device responses
@@ -143,16 +121,10 @@ func buildMassStorageInterface() (iface *usb.InterfaceDescriptor) {
 
 
 	// HID descriptor
-	hidDescriptor := HIDDescriptor{
-		Length:           9,
-		DescriptorType:   33,
-		bcdHID:           0x0111,
-		CountryCode:      0,
-		NumDescriptors:   1,
-		DescriptorType2:  34,
-		DescriptorLength: 59,
-	}
-	log.Printf("HID Descriptor: %v\n", hidDescriptor.Bytes())
+
+	// hidDescriptor := &usb.HIDDescriptor{}
+	// hidDescriptor.SetDefaults()
+	// iface.ClassDescriptors = append(iface.ClassDescriptors, hidDescriptor.Bytes())
 
 	return
 }

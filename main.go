@@ -97,12 +97,17 @@ func main() {
 	iface := buildMassStorageInterface()
 	device.Configurations[0].AddInterface(iface)
 
+	log.Printf("Init USB1")
 	usbarmory.USB1.Init()
+	log.Printf("DeviceMode set for USB1")
 	usbarmory.USB1.DeviceMode()
+	log.Printf("Reset USB1")
 	usbarmory.USB1.Reset()
 
 	log.Printf("USB1 start")
 	
 	// never returns
 	usbarmory.USB1.Start(device)
+	log.Printf("It should never return. Bug here.")
+
 }

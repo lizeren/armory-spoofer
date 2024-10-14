@@ -12,6 +12,7 @@ package usb
 import (
 	"encoding/binary"
 	"fmt"
+	"log"
 
 	"github.com/usbarmory/tamago/internal/reg"
 )
@@ -206,7 +207,9 @@ func (hw *USB) handleSetup() (conf uint8, err error) {
 
 		err = fmt.Errorf("unsupported request code: %#x", setup.Request)
 	}
-
+	if(err != nil){
+		log.Printf("Error in handleSetup")
+	}
 	return
 }
 

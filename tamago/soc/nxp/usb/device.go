@@ -12,6 +12,7 @@ package usb
 import (
 	"sync"
 	"time"
+	
 
 	"github.com/usbarmory/tamago/internal/reg"
 )
@@ -56,6 +57,7 @@ func (hw *USB) DeviceMode() {
 // Start waits and handles configured USB endpoints in device mode, it should
 // never return. Note that isochronous endpoints are not supported.
 func (hw *USB) Start(dev *Device) {
+
 	if dev == nil {
 		return
 	}

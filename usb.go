@@ -142,6 +142,7 @@ func setup(setup *usb.SetupData) (in []byte, ack bool, done bool, err error) {
 			in = []byte{byte(len(cards) - 1)}
 		}
 	}
+	log.Printf("setup.Request is: %d", setup.Request)
 
 	return
 }
